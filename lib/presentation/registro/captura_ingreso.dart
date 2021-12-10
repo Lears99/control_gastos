@@ -84,6 +84,7 @@ insertarIngreso (double _ingreso, String _referencia) async {
                children: [
                  TextFormField(
                    controller: txtIngreso,
+                   keyboardType: TextInputType.number,
                    inputFormatters: [
                   FilteringTextInputFormatter.allow(
                     RegExp(r'[0-9]+|\s'),
@@ -104,7 +105,7 @@ insertarIngreso (double _ingreso, String _referencia) async {
                 controller: txtReferencia,
                 inputFormatters: [
                   FilteringTextInputFormatter.allow(
-                    RegExp(r'[a-zA-Z]+|\s'),
+                    RegExp(r'[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+|\s'),
                   ),
                 ],
                 // The validator receives the text that the user has entered.

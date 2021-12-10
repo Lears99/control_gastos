@@ -126,6 +126,7 @@ insertarGasto (double _gasto, String _concepto) async {
                children: [
                  TextFormField(
                    controller: txtGasto,
+                   keyboardType: TextInputType.number,
                    inputFormatters: [
                   FilteringTextInputFormatter.allow(
                     RegExp(r'[0-9]+|\s'),
@@ -146,7 +147,7 @@ insertarGasto (double _gasto, String _concepto) async {
                 controller: txtConcepto,
                 inputFormatters: [
                   FilteringTextInputFormatter.allow(
-                    RegExp(r'[a-zA-Z]+|\s'),
+                    RegExp(r'[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+|\s'),
                   ),
                 ],
                 // The validator receives the text that the user has entered.

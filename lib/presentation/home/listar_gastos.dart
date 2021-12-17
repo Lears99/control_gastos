@@ -41,20 +41,38 @@ class ListaGastosState extends State<ListaGastos>{
     
 
     return MaterialApp(
-        home: Scaffold(
-            appBar: AppBar(
-              title: const Text("Lista de Gastos"),
+      home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.greenAccent,
+              title: const Center(child: Text("Lista de Gastos",
+              style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 22.0,
+                      color: Colors.black,
+                    ),
+                    ),
+              
+                    ),
             ),
             body: ListView.builder(
               itemCount: listaGastos.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text((index+1).toString()+") gasto: "+listaGastos[index].gasto.toString()+"      concepto: "+listaGastos[index].concepto),
+                  leading: const CircleAvatar(radius: 23, backgroundColor: Colors.pinkAccent,  child: Icon(Icons.shopping_bag_outlined, color: Colors.white, ),),
+                  title: Text((index+1).toString()+". Gasto: \$"+listaGastos[index].gasto.toString()+"\nConcepto: "+listaGastos[index].concepto,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18.0,
+                      color: Colors.black,
+                    ),
+                  ),
                 );
               },
             )
-        )
-    );
+      )
+            
+        );
+    
   }
 
 }

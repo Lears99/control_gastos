@@ -56,99 +56,150 @@ class Login extends StatelessWidget {
       }
       );
     }
-    
 }
 
     return MaterialApp(
       title: appTitle,
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text(appTitle),
-        ),
         body: SingleChildScrollView(
-            child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(             
-            alignment: Alignment.center,
-            margin: const EdgeInsets.only(top: 20, bottom: 20),
-            child: Image.asset(
-                "assets/images/avatar.jpg",
-                width: 250,
-                height: 250,
+            child: Column(
+              children: [
+                Container(
+              width: 420,
+              height: 370,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/cochinito.jpg'),
+                  fit: BoxFit.cover
+                  )
               ),
-          ),
-              
-              TextFormField(
-                controller: txtUsuario,
-                inputFormatters: [
-                  FilteringTextInputFormatter.allow(
-                    RegExp(r'[0-9a-zA-Z]+|\s'),
-                  ),
+              child: Stack(
+                children: const <Widget>[
+                 Positioned(
+                   left: 30.0,
+                   bottom: 20.0,
+                   child: Text(
+                     'Inicio de Sesión',
+                     style: TextStyle(
+                       fontWeight: FontWeight.w600,
+                       fontSize: 28.0,
+                       letterSpacing: 1.5,
+                       color: Colors.white,
+                     ),
+                   ),
+                 ),  
                 ],
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Favor de ingresar nombre de usuario';
-                  }
-                  return null;
-                },
-                decoration: const InputDecoration(
-                    icon: Icon(Icons.account_circle),
-                    label: Text("Nombre de Usuario")),
               ),
-              TextFormField(
-                controller: txtContra,
-                obscureText: true,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Favor de ingresar la contraseña';
-                  }
-                  return null;
-                },
-                decoration: const InputDecoration(
-                    icon: Icon(Icons.password),
-                    label: Text("Contraseña")),
-              ),
-              Container(             
-            alignment: Alignment.center,
-            margin: const EdgeInsets.only(top: 20, bottom: 20),
-            child: ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Procesando datos...')),
-                      );
-                      iniciarSesion(txtUsuario.text, txtContra.text);
-
-                      // Navigator.push(context,
-                      //    MaterialPageRoute(builder: (context) => MyHome()));
-                    }
-                  },
-                  child: const Text('Iniciar sesión'),
-                ),
-          ),
-          Container(             
-            alignment: Alignment.centerRight,
-            margin: const EdgeInsets.only(top: 20, bottom: 20),
-            child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                     MaterialPageRoute(builder: (context) => CapturaUsuario()));
-                  },
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.transparent,
-                    shadowColor: Colors.transparent,
-                    elevation: 0.0,
-                    onPrimary: Colors.black
+            ),
+                Form(
+          key: _formKey,
+          child: Container(
+            margin: const EdgeInsets.symmetric(horizontal: 25.0),
+            child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [     
+            SizedBox(height: 20.0,),
+              
+               TextFormField(
+                    controller: txtUsuario,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(
+                              RegExp(r'[0-9A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ\u00f1]+|\s'),
+                            ),
+                    ],
+                     validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Favor de ingresar el nombre de usuario';
+                            }
+                            return null;
+                          },
+                    decoration: const InputDecoration(
+                      hintText: 'Nombre de Usuario',
+                      prefixIcon: Icon(Icons.person, color: Colors.black),
+      
                     ),
-                  child: const Text('Registrarse'),
-                ),
-          ),
+                    ),
+                    SizedBox(height: 20.0,),
+
+               TextFormField(
+                    controller: txtContra,
+                    obscureText: true,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(
+                              RegExp(r'[0-9A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ\u00f1]+|\s'),
+                            ),
+                    ],
+                     validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Favor de ingresar la contraseña';
+                            }
+                            return null;
+                          },
+                    decoration: const InputDecoration(
+                      hintText: 'Contraseña',
+                      prefixIcon: Icon(Icons.lock, color: Colors.black),
+                    ),
+                    ),
+                     SizedBox(height: 20.0,),
+
+             GestureDetector(
+                      onTap: (){
+                        if (_formKey.currentState!.validate()) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content: Text('Procesando datos...')),
+                              );
+                              iniciarSesion(txtUsuario.text, txtContra.text);
+                            }
+                      },
+                      child: Container(
+                        height: 50.0,
+                        decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: <Color>[Color(0xFF00E676), Color(0xFF795578)],
+                          ),
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
+                        child: const Center(
+                          child: Text(
+                            'Iniciar Sesión',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              color: Colors.black,
+                              fontSize: 15.0,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+
+           SizedBox(height: 25.0,),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const CapturaUsuario()));
+                    },
+                    child: const Center( 
+                      child: Text(
+                      'Crear una nueva cuenta',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.w500,
+                      )
+                    ),
+                    ),
+                  ),
             ],
           ),
-        )),
+          ),
+        ),
+              ],
+            ),
+        ),
       ),
     );
   }

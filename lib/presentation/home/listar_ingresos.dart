@@ -42,13 +42,29 @@ class ListaIngresosState extends State<ListaIngresos>{
     return MaterialApp(
         home: Scaffold(
             appBar: AppBar(
-              title: const Text("Lista de Ingresos"),
+              backgroundColor: Colors.greenAccent,
+              title: const Center(child: Text("Lista de Ingresos",
+              style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 22.0,
+                      color: Colors.black,
+                    ),
+                    ),
+              
+                    ),
             ),
             body: ListView.builder(
               itemCount: listaIngresos.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text((index+1).toString()+") ingreso: "+listaIngresos[index].ingreso.toString()+"      referencia: "+listaIngresos[index].referencia),
+                  leading: const CircleAvatar(radius: 23, backgroundColor: Colors.blue,  child: Icon(Icons.attach_money_sharp, color: Colors.white, ),),
+                  title: Text((index+1).toString()+". Ingreso: \$"+listaIngresos[index].ingreso.toString()+"\nReferencia: "+listaIngresos[index].referencia,
+                   style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18.0,
+                      color: Colors.black,
+                    ),
+                  ),
                 );
               },
             )

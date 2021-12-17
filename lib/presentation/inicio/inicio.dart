@@ -44,16 +44,22 @@ class _InicioState extends State<Inicio>{
     return MaterialApp(
       title: 'App Gastos',
        home: Scaffold(
-         appBar: AppBar(
-          title: const Text('Cargando...'),
-        ),
         body: SingleChildScrollView(
            child: Form(
              key: _formKey,
              child: Column(
                crossAxisAlignment: CrossAxisAlignment.start,
                children: [
-                  Text(""),
+                  Container(
+                    alignment: Alignment.center,
+                    child: Image.asset(
+                      "assets/images/splash.png",
+                      width: 700,
+                      height: 700,
+                    ),
+                  ),
+                  
+                  
                ]
              )
            )
